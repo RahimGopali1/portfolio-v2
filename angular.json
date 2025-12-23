@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/my-portfolio-v2/browser",
+            "outputPath": "dist/my-portfolio-v2",
             "baseHref": "/",
             "deployUrl": "/",
             "index": "src/index.html",
@@ -40,12 +40,8 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "scripts": []
+           
           },
           "configurations": {
             "production": {

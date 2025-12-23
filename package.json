@@ -9,7 +9,6 @@
     "build:prod": "ng build --configuration=production --output-hashing=all",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:my-portfolio-v2": "node dist/my-portfolio-v2/server/server.mjs",
     "postbuild": "xcopy src\\_redirects dist\\my-portfolio-v2\\ /Y"
   },
   "private": true,
@@ -24,7 +23,6 @@
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/platform-server": "^19.2.0",
     "@angular/router": "^19.2.0",
-    "@angular/ssr": "^19.2.19",
     "@emailjs/browser": "^4.4.1",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
