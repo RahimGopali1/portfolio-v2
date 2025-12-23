@@ -36,8 +36,26 @@ export class ContactComponent {
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    message: new FormControl('', [Validators.required])
+    message: new FormControl('', [Validators.required]),
   });
+
+  resetForm(): void {
+  this.contactForm.reset();
+  
+  // Mark all controls as pristine and untouched
+  Object.keys(this.contactForm.controls).forEach(key => {
+    const control = this.contactForm.get(key);
+    if (control) {
+      control.markAsPristine();
+      control.markAsUntouched();
+      control.setErrors(null);
+    }
+  });
+  
+  // Update the form's status
+  this.contactForm.updateValueAndValidity();
+}
+
 
   // Individual email control (for backward compatibility)
   readonly email = this.contactForm.get('email') as FormControl;
@@ -51,7 +69,7 @@ export class ContactComponent {
   private readonly EMAILJS_CONFIG = {
     serviceId: 'service_psw0ah4',
     templateId: 'template_luj2xhk',
-    publicKey: 'KbpA_vrf3RzDOmw6-'
+    publicKey: 'KbpA_vrf3RzDOmw6-',
   };
 
   constructor() {
@@ -72,57 +90,57 @@ export class ContactComponent {
   }
 
   async onSubmit(): Promise<void> {
-    // Reset messages
-    this.generalError.set('');
-    this.successMessage.set('');
-    
-    // Mark all fields as touched to trigger validation
-    this.contactForm.markAllAsTouched();
-    
-    // Check if form is valid
     if (this.contactForm.invalid) {
-      this.generalError.set('Please fill all required fields correctly.');
+      this.contactForm.markAllAsTouched();
       return;
     }
 
     this.isLoading.set(true);
 
     try {
+      const now = new Date();
+
       // Prepare template parameters
       const templateParams = {
-        to_name: 'Website Admin', // You can change this or make it configurable
-        from_name: `${this.contactForm.value.firstName} ${this.contactForm.value.lastName}`,
-        from_email: this.contactForm.value.email,
-        message: this.contactForm.value.message,
-        reply_to: this.contactForm.value.email
+        to_name: 'Admin', // You can change this
+        from_name:
+          `${this.contactForm.value.firstName} ${this.contactForm.value.lastName}`.trim(),
+        from_email: this.contactForm.value.email || '',
+        message: this.contactForm.value.message || '',
+        reply_to: this.contactForm.value.firstName || '',
+        date: now.toLocaleDateString('en-US', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }),
+        time: now.toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true,
+        }),
       };
 
-      // Send email using EmailJS
-      const response = await emailjs.send(
+      await emailjs.send(
         this.EMAILJS_CONFIG.serviceId,
         this.EMAILJS_CONFIG.templateId,
         templateParams,
         this.EMAILJS_CONFIG.publicKey
       );
 
-      console.log('Email sent successfully!', response);
-      
       // Show success message
-      this.successMessage.set('Message sent successfully!');
-      
-      // Reset form after successful submission
-      this.contactForm.reset();
-      this.contactForm.markAsPristine();
-      this.contactForm.markAsUntouched();
+      this.successMessage.set('✅ Message sent successfully!');
 
-      // Clear success message after 5 seconds
+      // Reset form
+      this.resetForm();
+
+      // Clear message after 5 seconds
       setTimeout(() => {
         this.successMessage.set('');
       }, 5000);
-
-    } catch (error) {
-      console.error('Failed to send email:', error);
-      this.generalError.set('Failed to send message. Please try again later.');
+    } catch (error: any) {
+      console.error('EmailJS Error:', error);
+      this.errorMessage.set('Failed to send message. Please try again.');
     } finally {
       this.isLoading.set(false);
     }
@@ -137,17 +155,17 @@ export class ContactComponent {
   // Get field error message
   getFieldErrorMessage(fieldName: string): string {
     const field = this.contactForm.get(fieldName);
-    
+
     if (!field) return '';
-    
+
     if (field.hasError('required')) {
       return 'This field is required';
     }
-    
+
     if (fieldName === 'email' && field.hasError('email')) {
       return 'Please enter a valid email address';
     }
-    
+
     return '';
   }
 }

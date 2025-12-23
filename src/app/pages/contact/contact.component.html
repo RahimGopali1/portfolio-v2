@@ -53,7 +53,9 @@
                                         <mat-label>Last Name</mat-label>
                                         <input matInput formControlName="lastName" placeholder="Your last name">
                                         @if (isFieldInvalid('lastName')) {
-                                        <mat-error>{{ getFieldErrorMessage('lastName') }}</mat-error>
+                                        <mat-error>
+                                            {{ getFieldErrorMessage('lastName') }}
+                                        </mat-error>
                                         }
                                     </mat-form-field>
                                 </div>
@@ -83,22 +85,6 @@
                                 </div>
                             </div>
 
-                            <!-- Success Message -->
-                            @if (successMessage()) {
-                            <div class="alert alert-success mb-3" role="alert">
-                                <i class="fas fa-check-circle me-2"></i>
-                                {{ successMessage() }}
-                            </div>
-                            }
-
-                            <!-- Error Message -->
-                            @if (generalError()) {
-                            <div class="alert alert-danger mb-3" role="alert">
-                                <i class="fas fa-exclamation-circle me-2"></i>
-                                {{ generalError() }}
-                            </div>
-                            }
-
                             <!-- Submit Button -->
                             <div class="action-btn d-flex justify-content-center justify-content-lg-end">
                                 <button type="submit" [disabled]="contactForm.invalid || isLoading()"
@@ -116,6 +102,22 @@
                                     }
                                 </button>
                             </div>
+                            
+                            <!-- Success Message -->
+                            @if (successMessage()) {
+                            <div class="alert alert-success mb-3" role="alert">
+                                {{ successMessage() }}
+                            </div>
+                            }
+
+                            <!-- Error Message -->
+                            @if (generalError()) {
+                            <div class="alert alert-danger mb-3" role="alert">
+                                <i class="fas fa-exclamation-circle me-2"></i>
+                                {{ generalError() }}
+                            </div>
+                            }
+
                         </form>
                     </div>
                 </div>
