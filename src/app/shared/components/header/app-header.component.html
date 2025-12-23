@@ -1,0 +1,47 @@
+<header>
+    <div class="sidebar-nav">
+        <!-- <div class="toggle btn-clicked" (click)="toggleMenu()" [class.active]="isActive">
+            <span></span>
+        </div> -->
+        <div class="toggle btn-clicked" (click)="toggleMenu($event)" [class.active]="isActive">
+            <span></span>
+        </div>
+        <!-- <div class="navbar" [class.active]="isActive"> -->
+        <div class="navbar" #navbar [class.active]="isActive">
+            <ul class="nav-links d-flex flex-column">
+                <li class="nav-item mb-3" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a routerLink="/home" class="nav-link">
+                        <span>Home</span> <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </li>
+                <li class="nav-item mb-3" routerLinkActive="active">
+                    <a routerLink="/resume" class="nav-link">
+                        <span>Resume</span> <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </li>
+                <li class="nav-item mb-3" routerLinkActive="active">
+                    <a routerLink="/portfolio" class="nav-link">
+                        <span>Portfolio</span> <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </li>
+                <!-- <li class="nav-item mb-3" routerLinkActive="active">
+                    <a routerLink="/blog" class="nav-link">
+                        <span>Blog</span> <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </li> -->
+                <li class="nav-item mb-3" routerLinkActive="active">
+                    <a routerLink="/contact" class="nav-link">
+                        <span>Contact</span> <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="bg-wrapper">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</header>

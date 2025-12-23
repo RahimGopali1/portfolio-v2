@@ -1,0 +1,129 @@
+<div class="contact-section">
+    <div class="app-container">
+        <div class="contact-content section-padding">
+            <div class="contact-form-card">
+                <div class="main-title-wrapper mb-5">
+                    <div class="title-label">Contact</div>
+                    <h1 class="main-title">Get in Touch</h1>
+                </div>
+                <div
+                    class="d-flex align-items-start justify-content-start justify-content-md-between gap-3 flex-column-reverse flex-lg-row">
+                    <div class="contact-info">
+                        <h3 class="mb-5">I'd like to hear from you!</h3>
+                        <p>If you have any inquiries or just want to <br> say hi, please use the contact form!</p>
+
+                        <div class="email-holder">
+                            <p>
+                                <i class="fa-regular fa-envelope"></i>
+                                &nbsp;
+                                <a href="#">rahim.gopali123&#64;gmail.com</a>
+                            </p>
+                        </div>
+                        <div class="social-media">
+                            <ul>
+                                <li><a href="https://www.facebook.com/rahim.gopali56/" class="btn-clicked"
+                                        target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="https://github.com/RahimGopali1" class="btn-clicked" target="_blank"><i
+                                            class="fa-brands fa-github"></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/rahim-gopali-30256b218/" class="btn-clicked"
+                                        target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                <li><a href="https://www.instagram.com/rahim_gpl/" class="btn-clicked"
+                                        target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="contact-form mb-5 mb-lg-0">
+                        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                            <div class="row mb-2">
+                                <!-- First Name -->
+                                <div class="col-md-6 col-12 mb-2">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>First Name</mat-label>
+                                        <input matInput formControlName="firstName" placeholder="Your first name">
+                                        @if (isFieldInvalid('firstName')) {
+                                        <mat-error>{{ getFieldErrorMessage('firstName') }}</mat-error>
+                                        }
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- Last Name -->
+                                <div class="col-md-6 col-12 mb-2">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Last Name</mat-label>
+                                        <input matInput formControlName="lastName" placeholder="Your last name">
+                                        @if (isFieldInvalid('lastName')) {
+                                        <mat-error>{{ getFieldErrorMessage('lastName') }}</mat-error>
+                                        }
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="col-12 mb-2">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput formControlName="email" type="email"
+                                            placeholder="pat@example.com">
+                                        @if (email.invalid && email.touched) {
+                                        <mat-error>{{ errorMessage() }}</mat-error>
+                                        }
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- Message -->
+                                <div class="col-12 mb-2">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Message</mat-label>
+                                        <textarea matInput formControlName="message" placeholder="Your message"
+                                            rows="4"></textarea>
+                                        @if (isFieldInvalid('message')) {
+                                        <mat-error>{{ getFieldErrorMessage('message') }}</mat-error>
+                                        }
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <!-- Success Message -->
+                            @if (successMessage()) {
+                            <div class="alert alert-success mb-3" role="alert">
+                                <i class="fas fa-check-circle me-2"></i>
+                                {{ successMessage() }}
+                            </div>
+                            }
+
+                            <!-- Error Message -->
+                            @if (generalError()) {
+                            <div class="alert alert-danger mb-3" role="alert">
+                                <i class="fas fa-exclamation-circle me-2"></i>
+                                {{ generalError() }}
+                            </div>
+                            }
+
+                            <!-- Submit Button -->
+                            <div class="action-btn d-flex justify-content-center justify-content-lg-end">
+                                <button type="submit" [disabled]="contactForm.invalid || isLoading()"
+                                    class="btn btn-send btn-clicked">
+                                    @if (isLoading()) {
+                                    <div class="d-flex justify-content-center aling-items-center">
+                                        <span>Sending</span>
+                                        &nbsp;
+                                        <mat-spinner diameter="20"></mat-spinner>
+                                    </div>
+                                    } @else {
+                                    <span>Send</span>
+                                    &nbsp;
+                                    <i class="fa-regular fa-paper-plane"></i>
+                                    }
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-bg-vector">
+                    <img [src]="'assets/images/pages/bg.png'" class="rounded-circle" width="100%" height="100%"
+                        alt="No image">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

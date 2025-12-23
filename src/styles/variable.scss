@@ -1,0 +1,40 @@
+:root {
+  //font-weight;
+  --fw-2: 200;
+  --fw-3: 300;
+  --fw-4: 400;
+  --fw-5: 500;
+  --fw-6: 600;
+  --fw-7: 700;
+  --fw-8: 800;
+  --fw-9: 900;
+  //font-weight end;
+
+  //   color
+  --primary: #1e90ff;
+  --bg-color: #212428;
+  --side-bg: #121212;
+  --white: #e3e3e3;
+  --black: #000000;
+  --off-white: #c4cfde;
+  --primary-dim: #1e8fff33;
+  //   color end
+
+  //shadow
+  --shadow-1: 10px 10px 19px #1c1e22, -10px -10px 19px #262a2e;
+  --inner-shadow: 1px 4px 2px -3px rgba(0, 0, 0, 0.7) inset,
+    -1px -3px 3px -2px rgba(255, 255, 255, 0.2) inset;
+  //shadow end
+
+  // liner gradient
+  --bg-1: linear-gradient(145deg, #1e2024, #23272b);
+  --bg-2: linear-gradient(to right bottom, #212428, #16181c);
+  --bg-3: linear-gradient(145deg, #1ebfff 0%, var(--primary) 100%);
+  --bg-4: linear-gradient(180deg, #ffffff00 ,#23272bdd, #23272b);
+  // liner gradient end
+
+  //scroll bar color
+  --scroll-thumb: rgba(255, 255, 255, 0.25);
+  --scroll-thumb-hover: rgba(255, 255, 255, 0.45);
+  //scroll bar color end
+}

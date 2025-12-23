@@ -1,0 +1,34 @@
+@mixin MarPad {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+@mixin hover-card {
+  .hover-title,
+  .hover-img,
+  .read-more,
+  i {
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+  }
+  &:hover {
+    .hover-title {
+      color: var(--primary) !important;
+    }
+    .hover-img {
+      overflow: hidden !important;
+      img {
+        transform: scale(1.1) !important;
+      }
+    }
+    .read-more {
+      color: var(--primary) !important;
+      i {
+        color: var(--primary) !important;
+        transform: translateX(5px) !important;
+      }
+    }
+  }
+}

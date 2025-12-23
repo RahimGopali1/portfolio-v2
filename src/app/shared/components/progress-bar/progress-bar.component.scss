@@ -1,0 +1,82 @@
+.skill-card {
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+  .progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .percent {
+      position: relative;
+      box-shadow: var(--shadow-1);
+      border-radius: 50%;
+      margin-top: 2rem;
+      svg {
+        position: relative;
+        width: 210px;
+        height: 210px;
+        background: var(--bg-1);
+        border-radius: 50%;
+        transform: rotate(-90deg);
+        circle {
+          width: 100%;
+          height: 100%;
+          stroke: var(--off-white);
+          fill: none;
+          stroke-width: 8;
+          stroke-linecap: round;
+          transform-origin: center;
+          &.progress {
+            stroke: var(--primary);
+            stroke-dasharray: 628px;
+            // stroke-dashoffset: 628px;
+            transition: stroke-dashoffset 1.5s ease-in-out;
+          }
+        }
+      }
+      .number {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--off-white);
+        h3 {
+          font-weight: 200;
+          font-size: 3.5rem;
+          span {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+    .title {
+      h2 {
+        font-size: 18px;
+        margin: 25px 0 0;
+      }
+    }
+    // &:nth-child(1) {
+    //   svg {
+    //     circle {
+    //       &:last-of-type {
+    //         stroke: var(--primary);
+    //       }
+    //     }
+    //   }
+    // }
+    // &:nth-child(2) {
+    //   svg {
+    //     circle {
+    //       &:last-of-type {
+    //         stroke: #2ecc71;
+    //       }
+    //     }
+    //   }
+    // }
+  }
+  &:hover {
+    background: var(--bg-1);
+    box-shadow: var(--shadow-1);
+    border-radius: 10px;
+  }
+}

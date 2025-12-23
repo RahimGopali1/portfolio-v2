@@ -1,0 +1,28 @@
+<div class="portfolio-section">
+    <div class="app-container">
+        <div class="portfolio-content section-padding">
+            <div class="main-title-wrapper">
+                <div class="title-label">3+ Years of Experience</div>
+                <h1 class="main-title">My Portfolio</h1>
+            </div>
+            <div class="portfolio-list">
+                <a *ngFor="let project of projects" [href]="project.link" class="portfolio-item" target="_blank">
+                    <div class="portfolio-item-inner">
+                        <div class="portfolio-item-image">
+                            <img [src]="project.image" [alt]="project.title" />
+                        </div>
+
+                        <div class="icon">
+                            <img src="assets/images/pages/search.svg" alt="View Project" />
+                        </div>
+
+                        <div class="portfolio-item-content">
+                            <h4>{{ project.title }}</h4>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
