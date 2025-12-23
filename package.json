@@ -5,9 +5,12 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:netlify": "ng build --configuration=production --output-path=dist",
+    "build:prod": "ng build --configuration=production --output-hashing=all",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:my-portfolio-v2": "node dist/my-portfolio-v2/server/server.mjs"
+    "serve:ssr:my-portfolio-v2": "node dist/my-portfolio-v2/server/server.mjs",
+    "postbuild": "xcopy src\\_redirects dist\\my-portfolio-v2\\ /Y"
   },
   "private": true,
   "dependencies": {
