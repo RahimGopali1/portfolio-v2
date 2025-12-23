@@ -13,9 +13,6 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
 
-[[plugins]]
-  package = "@netlify/plugin-lighthouse"
-
 # Environment settings
 [build.environment]
   NODE_VERSION = "18"
