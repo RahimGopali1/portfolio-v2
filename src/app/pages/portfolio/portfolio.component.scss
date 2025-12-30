@@ -3,7 +3,8 @@
     .portfolio-list {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      column-gap: 15px;
+      // justify-content: space-between;
       .portfolio-item {
         background: var(--bg-1);
         box-shadow: var(--shadow-1);
