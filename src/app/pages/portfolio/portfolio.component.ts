@@ -50,6 +50,11 @@ export class PortfolioComponent {
       image: 'assets/images/portfolio/santifoun.png',
     },
     {
+      title: 'Care School',
+      link: 'https://careschool.edu.np/',
+      image: 'assets/images/portfolio/care.jpg',
+    },
+    {
       title: 'xybernova',
       link: 'https://github.com/RahimGopali1/XyberNova.git',
       image: 'assets/images/portfolio/xybernova.png',
