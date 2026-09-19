@@ -1,59 +1,115 @@
-# MyPortfolioV2
+# My Portfolio — Rahim Gopali
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+A personal portfolio and résumé website for a web developer, built with Angular 19 and server-side rendering. It presents professional projects, an interactive résumé with a downloadable PDF, and a working contact form.
 
-## Development server
+## Highlights
 
-To start a local development server, run:
+- **Server-side rendering (SSR)** with prerendered routes and client hydration + event replay, so pages arrive as fully rendered HTML for fast first paint and good SEO.
+- **Static prerendering of project case studies** — every `/portfolio/:slug` route is prerendered at build time from a single data source, producing one static HTML page per project.
+- **Per-route SEO** — a dedicated `SeoService` sets titles, meta descriptions, canonical URLs, OpenGraph/Twitter cards, and JSON-LD structured data for each page.
+- **Résumé download** — the PDF is served from `src/assets/resume/` with a single source of truth for the path and filename in `src/app/shared/data/career.data.ts`.
+- **Contact form** powered by EmailJS — messages are sent directly from the browser with no backend required.
+- **Optimized images** — an image pipeline script batch-converts source PNG/JPG images to resized, compressed WebP.
 
-```bash
-ng serve
-```
+## Tech Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+| Layer | Technology |
+| --- | --- |
+| Framework | Angular 19 (standalone components, signals) |
+| UI | Angular Material, Bootstrap 5, Bootstrap Icons |
+| SSR | `@angular/ssr` with Express |
+| Email | EmailJS |
+| Imaging | Sharp (build-time image optimization) |
+| Testing | Jasmine + Karma |
+| Deployment | Netlify (SPA fallback via `_redirects`) |
 
-## Code scaffolding
+## Getting Started
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Prerequisites
 
-```bash
-ng generate component component-name
-```
+- Node.js 18.19 or newer
+- npm
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Install
 
 ```bash
-ng test
+npm install
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### Development server
 
 ```bash
-ng e2e
+npm start
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Navigate to `http://localhost:4200/`. The app reloads automatically on source changes.
+
+### Production build
+
+```bash
+npm run build:prod
+```
+
+Build artifacts are written to `dist/`. Use `npm run build:netlify` when building for the Netlify deployment. A `postbuild` script copies `src/_redirects` into the build output so client-side routes resolve correctly on Netlify.
+
+### Tests
+
+```bash
+npm test
+```
+
+Runs unit tests with Karma + Jasmine.
+
+## Project Structure
+
+```
+src/app/
+├── pages/                  # Routed pages
+│   ├── home-page/          # Landing page
+│   ├── resume/             # Résumé page with PDF download
+│   ├── portfolio/          # Project grid
+│   ├── project-detail/     # Case-study page per project slug
+│   ├── contact/            # Contact form (EmailJS)
+│   └── not-found/          # 404 page
+├── shared/
+│   ├── components/         # Reusable UI (header, progress bar, ...)
+│   ├── data/               # Centralized data & config
+│   │   ├── projects.data.ts    # Single source of truth for projects
+│   │   ├── career.data.ts      # Résumé PDF path/filename constants
+│   │   └── site.config.ts      # Site name, URL, SEO defaults
+│   └── services/
+│       └── seo.service.ts  # Per-route meta tags, canonicals, JSON-LD
+scripts/
+└── optimize-images.mjs     # PNG/JPG → WebP pipeline (Sharp)
+```
+
+## Content Management
+
+Site content is data-driven — no component edits needed for routine updates:
+
+- **Projects** — add or edit entries in `src/app/shared/data/projects.data.ts`. Each entry needs a unique `slug`, `title`, `link`, and `image`; optional `summary`, `role`, `stack`, `year`, and `highlights` fields populate the case-study page automatically. Portfolio case-study pages are prerendered per slug, so rebuild after adding a project.
+- **Résumé** — replace the PDF in `src/assets/resume/` (filename must match `RESUME_PDF_PATH` in `src/app/shared/data/career.data.ts`).
+- **SEO / site metadata** — update `src/app/shared/data/site.config.ts`. Set `SITE_URL` to the production domain once; canonical URLs, OpenGraph tags, and the sitemap derive from it.
+- **Images** — drop source PNG/JPG files into `image-sources/portfolio/` and run:
+
+```bash
+npm run optimize:images
+```
+
+This generates optimized WebP versions in `src/assets/images/portfolio/` (900px max width, quality 80).
+
+## Routing
+
+| Route | Page |
+| --- | --- |
+| `/home` | Landing page |
+| `/resume` | Résumé |
+| `/portfolio` | Project grid |
+| `/portfolio/:slug` | Project case study (prerendered per project) |
+| `/contact` | Contact form |
+| `**` | 404 page |
 
 ## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli)
+- [Angular SSR Guide](https://angular.dev/guide/ssr)
