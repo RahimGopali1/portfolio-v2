@@ -11,7 +11,7 @@
       h1 {
         font-size: 52px;
         color: var(--white);
-        font-weight: 800;
+        font-weight: var(--fw-8);
         .text {
           color: var(--primary);
         }
@@ -50,7 +50,7 @@
       }
       p {
         font-size: 16px;
-        font-weight: 500;
+        font-weight: var(--fw-5);
       }
       .social-media {
         ul {
@@ -63,10 +63,10 @@
               display: flex;
               align-items: center;
               justify-content: center;
-              transition: 0.3s all ease-in-out;
               box-shadow: var(--shadow-1);
-              border-radius: 10px;
-              transition: 0.3s;
+              border-radius: var(--radius-1);
+              transition: transform var(--t-base) var(--ease-neu),
+                box-shadow var(--t-base) var(--ease-neu);
               i {
                 font-size: 18px;
               }

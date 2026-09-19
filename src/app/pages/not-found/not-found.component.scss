@@ -1,0 +1,44 @@
+.not-found-section {
+  .not-found {
+    .not-found-text {
+      color: var(--off-white);
+      font-size: 16px;
+      margin-bottom: var(--space-4);
+    }
+
+    // same pill action button logic as the project detail page
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: 0.9rem 1.75rem;
+      background: var(--bg-1);
+      box-shadow: var(--shadow-sm);
+      border-radius: var(--radius-pill);
+      color: var(--white);
+      font-size: 15px;
+      font-weight: var(--fw-5);
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: transform var(--t-base) var(--ease-neu),
+        box-shadow var(--t-base) var(--ease-neu),
+        color var(--t-base) var(--ease-io);
+
+      i {
+        font-size: 14px;
+        color: var(--primary);
+      }
+
+      &:hover {
+        color: var(--primary);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-1);
+      }
+
+      &:active {
+        transform: translateY(0);
+        box-shadow: var(--inner-shadow-1);
+      }
+    }
+  }
+}

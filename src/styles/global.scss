@@ -39,11 +39,12 @@ ul {
   position: relative;
   width: 3.5rem;
   height: 3.5rem;
-  border-radius: 10px;
+  border-radius: var(--radius-1);
   cursor: pointer;
   background: var(--bg-1);
   box-shadow: var(--shadow-1);
-  transition: linear 1s ease-out;
+  transition: transform var(--t-base) var(--ease-neu),
+    box-shadow var(--t-base) var(--ease-neu);
   overflow: hidden;
   &::after {
     content: "";
@@ -54,12 +55,12 @@ ul {
     height: 100%;
     background: var(--bg-2);
     opacity: 0;
-    transition: 0.3s all ease-in-out;
+    transition: opacity var(--t-base) var(--ease-io);
     z-index: -1;
   }
   &:hover {
-    // background: var(--bg-2);
-    transform: translateY(-5px);
+    // consistent hover lift shared with cards/buttons
+    transform: translateY(-2px);
     &::after {
       opacity: 1;
     }
@@ -70,21 +71,126 @@ ul {
   }
 }
 
+/* ----------------------------------------------------------- */
+/* Neumorphic Material form fields (used on all pages)          */
+/* ----------------------------------------------------------- */
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-outline-color: transparent;
+  --mdc-outlined-text-field-hover-outline-color: transparent;
+  --mdc-outlined-text-field-focus-outline-color: transparent;
+  --mdc-outlined-text-field-container-color: transparent;
+  --mdc-outlined-text-field-input-text-color: var(--off-white);
+  --mdc-outlined-text-field-label-text-color: var(--off-white);
+  --mdc-outlined-text-field-hover-label-text-color: var(--off-white);
+  --mdc-outlined-text-field-focus-label-text-color: var(--primary);
+  --mdc-outlined-text-field-caret-color: var(--primary);
+  --mdc-outlined-text-field-hover-input-text-color: var(--off-white);
+  --mdc-outlined-text-field-disabled-input-text-color: rgba(196, 207, 222, 0.4);
+
+  width: 100%;
+
+  .mdc-text-field--outlined {
+    background: var(--bg-1);
+    box-shadow: var(--inner-shadow-1);
+    border-radius: var(--radius-1);
+    transition: box-shadow var(--t-base) var(--ease-io);
+
+    // hide the default notch outline, the inset shadow draws the field
+    .mdc-notched-outline {
+      * {
+        border-color: transparent !important;
+      }
+    }
+
+    &:hover {
+      box-shadow: var(--inner-shadow-1), var(--shadow-xs);
+    }
+
+    &:not(.mdc-text-field--disabled).mdc-text-field--focused {
+      box-shadow: var(--inner-shadow-1), 0 0 0 1px var(--primary-dim);
+
+      .mdc-floating-label {
+        color: var(--primary);
+      }
+    }
+
+    textarea.mdc-text-field__input {
+      resize: none;
+    }
+  }
+
+  .mdc-floating-label,
+  .mdc-text-field__input {
+    color: var(--off-white);
+  }
+
+  .mdc-text-field__input {
+    &::placeholder {
+      color: rgba(196, 207, 222, 0.35);
+    }
+  }
+
+  // hide the default character/error outline stroke on focus
+  .mdc-text-field--focused {
+    .mdc-notched-outline {
+      * {
+        border-color: transparent !important;
+      }
+    }
+  }
+
+  .mat-mdc-form-field-error {
+    color: var(--danger);
+  }
+
+  .mat-mdc-form-field-subscript-wrapper {
+    margin-bottom: -0.6rem;
+  }
+}
+
+// Material spinner follows the primary accent
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: var(--primary);
+}
+
+// Neumorphic alert boxes (contact form status messages)
+.alert-neu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  border: none;
+  border-radius: var(--radius-1);
+  background: var(--bg-1);
+  box-shadow: var(--inner-shadow-1);
+  color: var(--off-white);
+  font-size: 15px;
+  letter-spacing: 0.5px;
+
+  &.alert-neu-success {
+    color: var(--success);
+  }
+
+  &.alert-neu-danger {
+    color: var(--danger);
+  }
+}
+
 .main-title-wrapper {
   position: relative;
-  margin-bottom: 2rem;
-  padding-left: 2rem;
+  margin-bottom: var(--space-4);
+  padding-left: var(--space-4);
   .title-label {
     color: var(--primary);
     font-size: 16px;
     font-family: "Poppins", serif;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-1);
     letter-spacing: 1px;
     text-transform: uppercase;
   }
   .main-title {
     font-size: 60px;
-    font-weight: 800;
+    font-weight: var(--fw-8);
     letter-spacing: 3px;
   }
   &::after {

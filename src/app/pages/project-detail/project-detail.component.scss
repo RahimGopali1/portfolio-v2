@@ -1,0 +1,120 @@
+.project-section {
+  .project-detail {
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      margin-bottom: var(--space-3);
+      color: var(--off-white);
+      font-size: 15px;
+      font-weight: var(--fw-5);
+      letter-spacing: 0.5px;
+      transition: color var(--t-base) var(--ease-io);
+
+      &:hover {
+        color: var(--primary);
+      }
+    }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
+    }
+
+    // pill action button, mirrors the contact form's submit button logic
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      padding: 0.9rem 1.75rem;
+      background: var(--bg-1);
+      box-shadow: var(--shadow-sm);
+      border-radius: var(--radius-pill);
+      color: var(--white);
+      font-size: 15px;
+      font-weight: var(--fw-5);
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: transform var(--t-base) var(--ease-neu),
+        box-shadow var(--t-base) var(--ease-neu),
+        color var(--t-base) var(--ease-io);
+
+      i {
+        font-size: 14px;
+        color: var(--primary);
+      }
+
+      &:hover {
+        color: var(--primary);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-1);
+      }
+
+      &:active {
+        transform: translateY(0);
+        box-shadow: var(--inner-shadow-1);
+      }
+    }
+
+    .project-media {
+      background: var(--bg-1);
+      box-shadow: var(--shadow-1);
+      border-radius: var(--radius-1);
+      padding: 0.4rem;
+      overflow: hidden;
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: var(--radius-sm);
+      }
+    }
+
+    .project-panel {
+      margin-top: var(--space-4);
+      padding: var(--space-4);
+      background: var(--bg-1);
+      box-shadow: var(--shadow-1);
+      border-radius: var(--radius-1);
+
+      h2 {
+        color: var(--primary);
+        font-size: 22px;
+        font-weight: var(--fw-6);
+        margin-bottom: var(--space-2);
+      }
+
+      p {
+        color: var(--white);
+        font-size: 16px;
+        margin: 0;
+      }
+    }
+
+    .project-facts {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+
+      li {
+        display: flex;
+        gap: var(--space-2);
+        color: var(--white);
+        font-size: 15px;
+
+        .fact-label {
+          min-width: 5rem;
+          color: var(--off-white);
+        }
+      }
+    }
+
+    .project-missing-text {
+      color: var(--off-white);
+      font-size: 16px;
+    }
+  }
+}

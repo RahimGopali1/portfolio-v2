@@ -1,40 +1,39 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import {
+  RESUME_PDF_FILENAME,
+  RESUME_PDF_PATH,
+} from '../../data/career.data';
 
 @Component({
   selector: 'app-header',
   imports: [RouterModule],
   templateUrl: './app-header.component.html',
-  styleUrl: './app-header.component.scss'
+  styleUrl: './app-header.component.scss',
 })
 export class HeaderComponent {
-  isActive = false;
+  /** Whether the sidebar is expanded (owned by the app shell). */
+  @Input() open = true;
 
-  @ViewChild('navbar', { static: false }) navbar!: ElementRef;
+  /** Extra host classes driven by the app shell (e.g. mobile detection). */
+  @HostBinding('class') hostClass = '';
 
-  toggleMenu(event: Event): void {
-    event.stopPropagation(); // prevents immediate close
-    this.isActive = !this.isActive;
+  /** Resume download target (single source: shared/data/career.data.ts). */
+  readonly resumePath = RESUME_PDF_PATH;
+  readonly resumeFileName = RESUME_PDF_FILENAME;
+
+  /** Emitted when the user clicks the toggle button. */
+  @Output() toggle = new EventEmitter<void>();
+
+  /** Emitted when the user clicks a nav link (used to close on mobile). */
+  @Output() navigate = new EventEmitter<void>();
+
+  onToggle(event: Event): void {
+    event.stopPropagation();
+    this.toggle.emit();
   }
 
-  // 🔹 Close on click outside
-  @HostListener('document:click', ['$event'])
-  onClickOutside(event: Event): void {
-    if (
-      this.isActive &&
-      this.navbar &&
-      !this.navbar.nativeElement.contains(event.target)
-    ) {
-      this.isActive = false;
-    }
-  }
-
-  // 🔹 Close on scroll
-  @HostListener('window:scroll')
-  onScroll(): void {
-    if (this.isActive) {
-      this.isActive = false;
-    }
+  onNavigate(): void {
+    this.navigate.emit();
   }
 }
-

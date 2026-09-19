@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormControl,
@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { merge } from 'rxjs';
 import emailjs from '@emailjs/browser';
+import { SeoService } from '../../shared/services/seo.service';
 
 @Component({
   selector: 'contact',
@@ -31,6 +32,8 @@ import emailjs from '@emailjs/browser';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent {
+  private readonly seo = inject(SeoService);
+
   // Contact form group
   contactForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
@@ -73,6 +76,8 @@ export class ContactComponent {
   };
 
   constructor() {
+    this.seo.set({ title: 'Contact', path: '/contact' });
+
     // Subscribe to email validation changes
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())

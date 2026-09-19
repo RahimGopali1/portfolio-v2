@@ -1,0 +1,75 @@
+<div class="project-section">
+    <div class="app-container">
+        <div class="project-detail section-padding">
+            @if (project(); as p) {
+            <a class="back-link" routerLink="/portfolio">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>All projects</span>
+            </a>
+
+            <div class="main-title-wrapper">
+                <div class="title-label">Project</div>
+                <h1 class="main-title">{{ p.title }}</h1>
+            </div>
+
+            <div class="project-actions">
+                <a class="btn-action" [href]="p.link" target="_blank" rel="noopener">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Visit live site</span>
+                </a>
+            </div>
+
+            <div class="project-media">
+                <img [src]="p.image" [alt]="p.title" />
+            </div>
+
+            @if (p.summary) {
+            <div class="project-panel">
+                <h2>Overview</h2>
+                <p>{{ p.summary }}</p>
+            </div>
+            }
+
+            @if (p.role || p.year || p.stack) {
+            <div class="project-panel">
+                <h2>Details</h2>
+                <ul class="project-facts">
+                    @if (p.role) {
+                    <li><span class="fact-label">Role</span><span>{{ p.role }}</span></li>
+                    }
+                    @if (p.year) {
+                    <li><span class="fact-label">Year</span><span>{{ p.year }}</span></li>
+                    }
+                    @if (p.stack) {
+                    <li><span class="fact-label">Stack</span><span>{{ stackLabel(p) }}</span></li>
+                    }
+                </ul>
+            </div>
+            }
+
+            @if (p.highlights; as highlights) {
+            <div class="project-panel">
+                <h2>Highlights</h2>
+                <ul class="project-facts">
+                    @for (highlight of highlights; track highlight) {
+                    <li><span>{{ highlight }}</span></li>
+                    }
+                </ul>
+            </div>
+            }
+            } @else {
+            <div class="main-title-wrapper">
+                <div class="title-label">404</div>
+                <h1 class="main-title">Project not found</h1>
+            </div>
+            <p class="project-missing-text">That project doesn't exist or may have been removed.</p>
+            <div class="project-actions">
+                <a class="btn-action" routerLink="/portfolio">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Back to portfolio</span>
+                </a>
+            </div>
+            }
+        </div>
+    </div>
+</div>

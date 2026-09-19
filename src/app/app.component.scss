@@ -1,4 +1,26 @@
 .main {
+  .main-container {
+    position: relative;
+
+    // ---- content reflow, in lockstep with the panel ---------------
+    // One 340ms transition in both directions — no sequencing, no delay,
+    // so the content and the panel move as a single interaction
+    .content-wrapper {
+      margin-left: 0;
+      transition: margin-left 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+
+      &.open {
+        // 20rem sidebar + 1.5rem margins + breathing room
+        margin-left: 21.5rem;
+      }
+
+      // tablet + mobile: the rail overlays, so content always keeps full width
+      @media screen and (max-width: 991px) {
+        margin-left: 0 !important;
+      }
+    }
+  }
+
   .loading-screen {
     position: fixed;
     top: 0;
@@ -92,5 +114,13 @@
         stroke-dashoffset: 1165;
       }
     }
+  }
+}
+
+// respect users who prefer minimal motion
+@media (prefers-reduced-motion: reduce) {
+  .main .main-container .content-wrapper,
+  .main .main-container .content-wrapper.open {
+    transition: none;
   }
 }

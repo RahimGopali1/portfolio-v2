@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Update the domain below (and SITE_URL in src/app/shared/data/site.config.ts).
+  Add a <url> block per project when a new project is added.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://your-domain.com/home</loc></url>
+  <url><loc>https://your-domain.com/resume</loc></url>
+  <url><loc>https://your-domain.com/portfolio</loc></url>
+  <url><loc>https://your-domain.com/contact</loc></url>
+
+  <url><loc>https://your-domain.com/portfolio/allstar-solution-ltd</loc></url>
+  <url><loc>https://your-domain.com/portfolio/seirim</loc></url>
+  <url><loc>https://your-domain.com/portfolio/saim-college</loc></url>
+  <url><loc>https://your-domain.com/portfolio/six-sigma-education</loc></url>
+  <url><loc>https://your-domain.com/portfolio/allstar-ems</loc></url>
+  <url><loc>https://your-domain.com/portfolio/rising-star-school-college</loc></url>
+  <url><loc>https://your-domain.com/portfolio/the-excel-public-school</loc></url>
+  <url><loc>https://your-domain.com/portfolio/santi-foundation</loc></url>
+  <url><loc>https://your-domain.com/portfolio/care-school</loc></url>
+  <url><loc>https://your-domain.com/portfolio/xybernova</loc></url>
+  <url><loc>https://your-domain.com/portfolio/gunraj-nursing-college</loc></url>
+</urlset>

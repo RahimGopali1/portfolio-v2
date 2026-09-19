@@ -19,8 +19,10 @@
   <div *ngIf="!isLoading">
 
     <div class="main-container">
-      <app-header />
-      <router-outlet />
+      <app-header [open]="sidebarOpen()" (toggle)="onSidebarToggle()" (navigate)="onSidebarNavigate()" />
+      <div class="content-wrapper" [class.open]="sidebarOpen()">
+        <router-outlet />
+      </div>
     </div>
   </div>
 </div>

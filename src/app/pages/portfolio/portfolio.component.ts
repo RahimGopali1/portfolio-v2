@@ -1,68 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { getExperienceLabel } from '../../shared/data/career.data';
+import { PROJECTS } from '../../shared/data/projects.data';
+import { SITE_DESCRIPTION } from '../../shared/data/site.config';
+import { SeoService } from '../../shared/services/seo.service';
 
 @Component({
   selector: 'app-portfolio',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './portfolio.component.html',
   styleUrl: './portfolio.component.scss',
 })
 export class PortfolioComponent {
-  projects = [
-    {
-      title: 'Allstar Solution LTD',
-      link: 'https://allstar.com.np/',
-      image: 'assets/images/portfolio/allstar.png',
-    },
-    {
-      title: 'Seirim',
-      link: 'https://seirim.com/',
-      image: 'assets/images/portfolio/seirim.png',
-    },
-    {
-      title: 'SAIM College',
-      link: 'https://www.saim.edu.np/',
-      image: 'assets/images/portfolio/saim.png',
-    },
-    {
-      title: 'Six Sigma Education',
-      link: 'https://sixsigmaedu.com.np/',
-      image: 'assets/images/portfolio/sixsigma.png',
-    },
-    {
-      title: 'Allstar EMS',
-      link: 'https://allstarems.com/ems/register',
-      image: 'assets/images/portfolio/ems.png',
-    },
-    {
-      title: 'Rising Star school/college',
-      link: 'https://school.risingstar.edu.np/',
-      image: 'assets/images/portfolio/risingstar.png',
-    },
-    {
-      title: 'The excel public school',
-      link: 'https://excelschool.edu.np/',
-      image: 'assets/images/portfolio/excel.png',
-    },
-    {
-      title: 'Santi Foundation',
-      link: 'https://www.shantifoundation.org.np/',
-      image: 'assets/images/portfolio/santifoun.png',
-    },
-    {
-      title: 'Care School',
-      link: 'https://careschool.edu.np/',
-      image: 'assets/images/portfolio/care.jpg',
-    },
-    {
-      title: 'xybernova',
-      link: 'https://github.com/RahimGopali1/XyberNova.git',
-      image: 'assets/images/portfolio/xybernova.png',
-    },
-    {
-      title: 'Gunraj nursing college',
-      link: 'https://github.com/RahimGopali1/Gunraj-College.git',
-      image: 'assets/images/portfolio/gunraj.png',
-    },
-  ];
+  private readonly seo = inject(SeoService);
+
+  /** Same derived career data as the Resume page (single source of truth). */
+  readonly experienceLabel = getExperienceLabel();
+
+  /** Shared project list (also powers the case-study routes). */
+  readonly projects = PROJECTS;
+
+  constructor() {
+    this.seo.set({
+      title: 'Portfolio',
+      description: `${this.experienceLabel} of experience shipping websites and web apps. ${SITE_DESCRIPTION}`,
+      path: '/portfolio',
+    });
+  }
 }

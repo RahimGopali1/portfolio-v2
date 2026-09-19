@@ -8,8 +8,11 @@ import {
   OnDestroy,
   PLATFORM_ID,
   Inject,
+  inject,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { PERSON_JSON_LD } from '../../shared/data/site.config';
+import { SeoService } from '../../shared/services/seo.service';
 
 @Component({
   selector: 'home',
@@ -18,6 +21,8 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent implements AfterViewInit, OnDestroy {
+  private readonly seo = inject(SeoService);
+
   @ViewChildren('word') words!: QueryList<ElementRef>;
   wordArray: HTMLElement[][] = [];
   currentWord = 0;
@@ -29,6 +34,12 @@ export class HomePageComponent implements AfterViewInit, OnDestroy {
     @Inject(PLATFORM_ID) private platformId: any
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId); // Check if running in the browser
+
+    this.seo.set({
+      title: 'Web Developer',
+      path: '/home',
+      jsonLd: PERSON_JSON_LD,
+    });
   }
 
   ngAfterViewInit(): void {

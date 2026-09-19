@@ -2,8 +2,8 @@
   .contact-content {
     .contact-form-card {
       position: relative;
-      padding: 7rem 3rem;
-      border-radius: 10px;
+      padding: 7rem var(--space-5);
+      border-radius: var(--radius-1);
       background: var(--bg-1);
       box-shadow: var(--shadow-1);
       overflow: hidden;
@@ -15,7 +15,7 @@
         }
         p {
           letter-spacing: 1px;
-          margin-bottom: 3rem !important;
+          margin-bottom: var(--space-5) !important;
         }
         .email-holder {
           i {
@@ -37,10 +37,10 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                transition: 0.3s all ease-in-out;
                 box-shadow: var(--shadow-1);
-                border-radius: 10px;
-                transition: 0.3s;
+                border-radius: var(--radius-1);
+                transition: transform var(--t-base) var(--ease-neu),
+                  box-shadow var(--t-base) var(--ease-neu);
                 i {
                   font-size: 18px;
                 }
@@ -52,66 +52,37 @@
       .contact-form {
         z-index: 1;
         width: 50%;
-        ::ng-deep {
-          .mat-mdc-form-field {
-            width: 100%;
-            --mdc-outlined-text-field-outline-color: var(
-              --off-white
-            ) !important;
-            --mdc-outlined-text-field-hover-outline-color: var(
-              --off-white
-            ) !important;
-            --mdc-outlined-text-field-focus-outline-color: var(
-              --off-white
-            ) !important;
-
-            --mdc-outlined-text-field-label-text-color: var(
-              --off-white
-            ) !important;
-            --mdc-outlined-text-field-label-ink-color: var(
-              --off-white
-            ) !important;
-            .mdc-floating-label,
-            .mdc-text-field__input {
-              color: var(--off-white);
-            }
-          }
-        }
         .action-btn {
           .btn-send {
             width: 10rem;
             border: none;
             cursor: pointer;
-            background-color: var(--bg-1);
-            border-radius: 50px;
-            box-shadow: 9px 9px 16px #1c1e22, -9px -9px 16px #262a2e;
-            transition: 0.3s all ease-in-out;
+            background: var(--bg-1);
+            border-radius: var(--radius-pill);
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--t-base) var(--ease-neu),
+              box-shadow var(--t-base) var(--ease-neu);
             color: var(--white);
             span {
               font-weight: 500;
               text-transform: uppercase;
             }
-            &:hover {
-              box-shadow: inset 4px 4px 8px #1e2024, inset -4px -4px 8px #23272b;
+            &:hover:not(:disabled) {
+              transform: translateY(-2px);
+              box-shadow: var(--shadow-1);
+            }
+            &:active:not(:disabled) {
+              transform: translateY(0);
+              box-shadow: var(--inner-shadow-1);
+            }
+            &:disabled {
+              opacity: 0.5;
+              cursor: not-allowed;
             }
           }
         }
-        .alert {
-          padding: 12px;
-          border-radius: 4px;
-          margin-bottom: 16px;
-        }
-
-        .alert-success {
-          background-color: #d4edda;
-          color: #155724;
-          border: 1px solid #c3e6cb;
-        }
-
-        .alert-danger {
-          background-color: #f8d7da;
-          color: #721c24;
-          border: 1px solid #f5c6cb;
+        .alert-neu {
+          margin-bottom: var(--space-2);
         }
       }
       .card-bg-vector {

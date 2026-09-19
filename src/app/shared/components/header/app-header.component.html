@@ -1,47 +1,44 @@
 <header>
-    <div class="sidebar-nav">
-        <!-- <div class="toggle btn-clicked" (click)="toggleMenu()" [class.active]="isActive">
-            <span></span>
-        </div> -->
-        <div class="toggle btn-clicked" (click)="toggleMenu($event)" [class.active]="isActive">
-            <span></span>
-        </div>
-        <!-- <div class="navbar" [class.active]="isActive"> -->
-        <div class="navbar" #navbar [class.active]="isActive">
+    <!-- toggle lives on the page surface, outside the sinking slab -->
+    <div class="toggle btn-clicked" (click)="onToggle($event)" [class.active]="open"
+        [attr.aria-expanded]="open" [attr.aria-label]="open ? 'Collapse navigation' : 'Expand navigation'">
+        <span></span>
+    </div>
+
+    <div class="sidebar-nav" [class.open]="open">
+        <div class="navbar">
             <ul class="nav-links d-flex flex-column">
-                <li class="nav-item mb-3" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                    <a routerLink="/home" class="nav-link">
+                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a routerLink="/home" class="nav-link" (click)="onNavigate()">
                         <span>Home</span> <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </li>
-                <li class="nav-item mb-3" routerLinkActive="active">
-                    <a routerLink="/resume" class="nav-link">
+                <li class="nav-item" routerLinkActive="active">
+                    <a routerLink="/resume" class="nav-link" (click)="onNavigate()">
                         <span>Resume</span> <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </li>
-                <li class="nav-item mb-3" routerLinkActive="active">
-                    <a routerLink="/portfolio" class="nav-link">
+                <li class="nav-item" routerLinkActive="active">
+                    <a routerLink="/portfolio" class="nav-link" (click)="onNavigate()">
                         <span>Portfolio</span> <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </li>
-                <!-- <li class="nav-item mb-3" routerLinkActive="active">
-                    <a routerLink="/blog" class="nav-link">
-                        <span>Blog</span> <i class="fa-solid fa-arrow-right"></i>
-                    </a>
-                </li> -->
-                <li class="nav-item mb-3" routerLinkActive="active">
-                    <a routerLink="/contact" class="nav-link">
+                <li class="nav-item" routerLinkActive="active">
+                    <a routerLink="/contact" class="nav-link" (click)="onNavigate()">
                         <span>Contact</span> <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </li>
             </ul>
 
-            <div class="bg-wrapper">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <!-- secondary action, pinned to the bottom of the rail -->
+            <a class="download-resume" [href]="resumePath" [attr.download]="resumeFileName"
+                aria-label="Download resume as PDF">
+                <i class="fa-solid fa-download"></i>
+                <span>Download Resume</span>
+            </a>
         </div>
     </div>
+
+    <!-- darkens the page while the sidebar is open on mobile -->
+    <div class="sidebar-scrim" (click)="onToggle($event)" [class.open]="open"></div>
 </header>

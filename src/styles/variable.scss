@@ -18,13 +18,46 @@
   --black: #000000;
   --off-white: #c4cfde;
   --primary-dim: #1e8fff33;
+  --success: #8ee6ae;
+  --danger: #ff8a8a;
+  // translucent overlay used over imagery (e.g. portfolio hover icon)
+  --overlay-1: #21242886;
   //   color end
 
   //shadow
   --shadow-1: 10px 10px 19px #1c1e22, -10px -10px 19px #262a2e;
+  --shadow-sm: 6px 6px 12px #1c1e22, -6px -6px 12px #262a2e;
+  --shadow-xs: 3px 3px 7px #1c1e22, -3px -3px 7px #262a2e;
   --inner-shadow: 1px 4px 2px -3px rgba(0, 0, 0, 0.7) inset,
     -1px -3px 3px -2px rgba(255, 255, 255, 0.2) inset;
+  --inner-shadow-1: inset 4px 4px 8px #1e2024, inset -4px -4px 8px #23272b;
+  --inner-shadow-sm: inset 2px 2px 5px #1c1e22, inset -2px -2px 5px #262a2e;
   //shadow end
+
+  //radius — one small intentional scale, no ad-hoc values
+  --radius-sm: 8px; // media / inner elements nested in a card
+  --radius-1: 10px; // standard controls, cards, panels
+  --radius-lg: 24px; // large containers (sidebar / modal-scale)
+  --radius-pill: 999px; // pills, badges, progress tracks
+  //radius end
+
+  //spacing — shared scale for custom paddings/margins
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 5rem;
+  //spacing end
+
+  //motion — shared easing + durations
+  --ease-neu: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-io: ease-in-out;
+  --t-fast: 0.15s;
+  --t-base: 0.3s;
+  --t-slow: 0.5s;
+  --t-panel: 0.34s;
+  //motion end
 
   // liner gradient
   --bg-1: linear-gradient(145deg, #1e2024, #23272b);

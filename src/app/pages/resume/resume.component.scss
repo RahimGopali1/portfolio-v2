@@ -8,17 +8,17 @@
             box-shadow: var(--shadow-1);
             border: none;
             overflow: visible;
-            border-radius: 10px;
+            border-radius: var(--radius-1);
             .mat-mdc-tab-list {
               .mat-mdc-tab-labels {
                 background: var(--bg-1);
-                border-radius: 10px;
+                border-radius: var(--radius-1);
                 display: flex;
                 .mdc-tab {
-                  padding: 2rem 24px;
+                  padding: var(--space-4) 24px;
                   height: auto;
-                  border-radius: 10px;
-                  transition: 0.5s;
+                  border-radius: var(--radius-1);
+                  transition: all var(--t-base) var(--ease-io);
                   .mdc-tab__ripple {
                     border: none;
                   }
@@ -113,11 +113,32 @@
                       .content {
                         background: var(--bg-1);
                         box-shadow: var(--shadow-1);
-                        padding: 2rem;
-                        border-radius: 10px;
+                        padding: var(--space-4);
+                        border-radius: var(--radius-1);
                         h3 {
                           color: var(--primary);
-                          font-weight: 600;
+                          font-weight: var(--fw-6);
+                        }
+                        .meta {
+                          display: flex;
+                          align-items: center;
+                          flex-wrap: wrap;
+                          column-gap: var(--space-1);
+                          margin-bottom: var(--space-1);
+                          .role {
+                            color: var(--off-white);
+                            font-size: 14px;
+                            font-weight: var(--fw-5);
+                            letter-spacing: 0.5px;
+                          }
+                          .duration {
+                            color: var(--primary);
+                            font-size: 13px;
+                            letter-spacing: 0.5px;
+                            padding: 2px 10px;
+                            border-radius: var(--radius-pill);
+                            background: var(--primary-dim);
+                          }
                         }
                         p {
                           font-size: 16px;
@@ -132,13 +153,24 @@
                         padding: 8px 16px;
                         background: var(--primary);
                         color: var(--white);
-                        border-radius: 18px;
+                        border-radius: var(--radius-pill);
                         // box-shadow: 0 0 0 3px var(--primary-dim);
-                        animation: pulse 2s infinite;
                         h4 {
                           margin: 0;
                           padding: 0;
                           font-size: 14px;
+                        }
+                      }
+
+                      // only the current role's badge pulses, so "Present"
+                      // reads as a clear, meaningful highlight
+                      &.current {
+                        .time {
+                          animation: pulse 2s infinite;
+                        }
+                        .content {
+                          box-shadow: var(--shadow-1),
+                            0 0 0 1px var(--primary-dim);
                         }
                       }
                       @keyframes pulse {
@@ -178,12 +210,12 @@
                   position: relative;
                   background-color: var(--bg-1);
                   box-shadow: var(--shadow-1);
-                  border-radius: 10px;
+                  border-radius: var(--radius-1);
                   overflow: hidden;
                   .skill {
                     .progress {
                       background-color: var(--off-white);
-                      border-radius: 20px;
+                      border-radius: var(--radius-pill);
                       position: relative;
                       height: 20px;
                       width: 100%;
@@ -192,7 +224,7 @@
                         background: var(--bg-3);
                         box-shadow: 0 3px 3px -5px var(--primary),
                           0 2px 5px var(--primary);
-                        border-radius: 20px;
+                        border-radius: var(--radius-pill);
                         color: var(--white);
                         font-weight: 700;
                         text-align: center;
@@ -222,8 +254,9 @@
                 .mat-mdc-tab-labels {
                   display: flex;
                   flex-direction: column;
+                  // stacked tabs use a tighter rhythm so they don't eat the screen
                   .mdc-tab {
-                    padding: 2rem 24px;
+                    padding: 1rem 24px;
                   }
                 }
               }

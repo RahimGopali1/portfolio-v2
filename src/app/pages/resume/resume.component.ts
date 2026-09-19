@@ -1,38 +1,48 @@
-import {
-  Component,
-  ElementRef,
-  AfterViewInit,
-  ViewChildren,
-  QueryList,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-// import { ProgressBarComponent } from '../../shared/components/progress-bar/progress-bar.component';
+import {
+  EducationItem,
+  EDUCATION,
+  ExperienceItem,
+  EXPERIENCE,
+  getExperienceLabel,
+  getRoleDurationYears,
+} from '../../shared/data/career.data';
+import { SeoService } from '../../shared/services/seo.service';
 
 @Component({
   selector: 'resume',
-  imports: [
-    CommonModule,
-    MatTabsModule,
-    MatProgressBarModule,
-    // ProgressBarComponent,
-  ],
+  imports: [MatTabsModule],
   templateUrl: './resume.component.html',
   styleUrl: './resume.component.scss',
 })
-export class ResumeComponent implements AfterViewInit {
-  @ViewChildren('progressBar') progressBarsElements!: QueryList<ElementRef>;
+export class ResumeComponent {
+  private readonly seo = inject(SeoService);
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.progressBarsElements.forEach((progressBar) => {
-        const progressElement = progressBar.nativeElement;
-        const progressValue = progressElement.getAttribute('data-done');
+  readonly experience: ExperienceItem[] = EXPERIENCE;
+  readonly education: EducationItem[] = EDUCATION;
+  readonly experienceLabel = getExperienceLabel();
 
-        progressElement.style.width = progressValue + '%';
-        progressElement.style.opacity = '1';
-      });
-    }, 100);
+  constructor() {
+    this.seo.set({
+      title: 'Resume',
+      description: `${this.experienceLabel} of experience. Education and work history.`,
+      path: '/resume',
+    });
+  }
+
+  /** Whole years in a role; the current role counts up to today. */
+  duration(item: ExperienceItem): number {
+    return getRoleDurationYears(item);
+  }
+
+  isCurrent(item: ExperienceItem): boolean {
+    return item.endYear === null;
+  }
+
+  /** e.g. "2022 – 2024" or "2026 – Present". */
+  yearRange(item: ExperienceItem | EducationItem): string {
+    const end = item.endYear ?? 'Present';
+    return `${item.startYear} – ${end}`;
   }
 }

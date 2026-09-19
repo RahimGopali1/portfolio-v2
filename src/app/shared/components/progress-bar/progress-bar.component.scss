@@ -1,6 +1,7 @@
 .skill-card {
   cursor: pointer;
-  transition: 0.3s all ease-in-out;
+  transition: background var(--t-base) var(--ease-io),
+    box-shadow var(--t-base) var(--ease-io);
   .progress-bar {
     display: flex;
     align-items: center;
@@ -77,6 +78,6 @@
   &:hover {
     background: var(--bg-1);
     box-shadow: var(--shadow-1);
-    border-radius: 10px;
+    border-radius: var(--radius-1);
   }
 }

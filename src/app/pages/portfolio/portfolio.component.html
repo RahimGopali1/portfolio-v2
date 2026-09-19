@@ -2,14 +2,16 @@
     <div class="app-container">
         <div class="portfolio-content section-padding">
             <div class="main-title-wrapper">
-                <div class="title-label">3+ Years of Experience</div>
+                <div class="title-label">{{ experienceLabel }} of Experience</div>
                 <h1 class="main-title">My Portfolio</h1>
             </div>
             <div class="portfolio-list">
-                <a *ngFor="let project of projects" [href]="project.link" class="portfolio-item" target="_blank">
+                <a *ngFor="let project of projects" [routerLink]="['/portfolio', project.slug]"
+                    class="portfolio-item">
                     <div class="portfolio-item-inner">
                         <div class="portfolio-item-image">
-                            <img [src]="project.image" [alt]="project.title" />
+                            <img [src]="project.image" [alt]="project.title" loading="lazy"
+                                decoding="async" />
                         </div>
 
                         <div class="icon">
